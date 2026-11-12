@@ -27,7 +27,6 @@
   --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --font-sans: "Source Sans 3", "Source Sans Pro", "Segoe UI", system-ui, sans-serif;
   --header-h: 4.75rem;
-  --quick-exit-h: 0;
   --space: 1.25rem;
   --content: 70rem;
   --narrow: 42rem;
@@ -216,37 +215,6 @@ address { font-style: normal; }
 .btn-text:hover { color: var(--ink); }
 .hero-actions, .cta-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
-/* ---------- Quick exit ---------- */
-.quick-exit {
-  position: fixed;
-  top: 0.7rem;
-  right: 0.7rem;
-  z-index: 180;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--terracotta);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 0.48rem 0.85rem 0.48rem 0.75rem;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  box-shadow: var(--shadow-sm);
-  line-height: 1;
-}
-.quick-exit:hover,
-.quick-exit:focus-visible {
-  background: #6e3f31;
-  color: #fff;
-  outline-offset: 3px;
-}
-.quick-exit svg { width: 0.95rem; height: 0.95rem; fill: none; stroke: currentColor; stroke-width: 2; }
-@media (min-width: 700px) {
-  .quick-exit { top: 1rem; right: 1rem; font-size: 0.9rem; padding: 0.55rem 1rem; }
-}
-
 /* ---------- Comfort controls ---------- */
 .comfort {
   position: fixed;
@@ -304,7 +272,6 @@ address { font-style: normal; }
   justify-content: space-between;
   gap: 1.25rem;
   padding: 0.6rem 0;
-  padding-right: 6.5rem; /* room for quick-exit */
 }
 .brand {
   display: inline-flex;
@@ -360,8 +327,22 @@ address { font-style: normal; }
   color: var(--sage);
   box-shadow: inset 0 -2px 0 var(--gold);
 }
+/* White label on the sage CTA so it stays readable in the header and
+   in the mobile hamburger menu (including hover, focus and current page).
+   White on --sage (#3A5447) is about 8.3:1, well above WCAG AA. */
+.nav a.nav-cta,
+.nav a.nav-cta:hover,
+.nav a.nav-cta:focus,
+.nav a.nav-cta:focus-visible,
 .nav a.nav-cta[aria-current="page"] {
-  color: var(--paper);
+  color: #fff;
+  text-decoration: none;
+}
+.nav a.nav-cta:hover,
+.nav a.nav-cta:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
 .nav-cta { margin-left: 0.4rem; padding: 0.65rem 1.15rem; font-size: 0.98rem; }
 .nav-toggle {
@@ -377,7 +358,6 @@ address { font-style: normal; }
 .nav-toggle svg { width: 1.3rem; height: 1.3rem; stroke: currentColor; fill: none; stroke-width: 1.8; }
 
 @media (max-width: 860px) {
-  .header-inner { padding-right: 7.2rem; }
   .brand-name { font-size: 1.02rem; }
   .nav-toggle { display: grid; }
   .nav {
@@ -400,8 +380,25 @@ address { font-style: normal; }
     border-bottom: 1px solid var(--line);
     font-size: 1.12rem;
   }
-  .nav a[aria-current="page"] { box-shadow: none; font-weight: 700; }
-  .nav .nav-cta { margin: 1rem 0 0.25rem; align-self: flex-start; }
+  .nav a[aria-current="page"]:not(.nav-cta) { box-shadow: none; font-weight: 700; }
+  .nav .nav-cta,
+  .nav .nav-cta:hover,
+  .nav .nav-cta:focus,
+  .nav .nav-cta:focus-visible,
+  .nav .nav-cta[aria-current="page"] {
+    color: #fff;
+    border: 1.5px solid var(--sage);
+    margin: 1rem 0 0.25rem;
+    padding: 0.75rem 1.25rem;
+    align-self: flex-start;
+    text-align: center;
+  }
+  .nav .nav-cta:hover,
+  .nav .nav-cta:focus-visible {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
 }
 
 /* ---------- Hero ---------- */
@@ -794,14 +791,6 @@ blockquote.quote footer {
   color: var(--ink-soft);
   font-style: italic;
 }
-.ethics-note {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  margin-top: 1.2rem;
-  padding: 0.85rem 1rem;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--radius-sm);
-}
 
 /* ---------- Resource ---------- */
 .resource-card {
@@ -1175,7 +1164,7 @@ html.text-lg .btn { padding: 0.95rem 1.6rem; }
 
 /* Print */
 @media print {
-  .quick-exit, .comfort, .nav-toggle, .breathe-panel, .site-header { display: none !important; }
+  .comfort, .nav-toggle, .breathe-panel, .site-header { display: none !important; }
   body { background: #fff; color: #000; }
   a { color: #000; }
   .site-footer { background: #fff; color: #000; }

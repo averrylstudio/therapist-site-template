@@ -64,16 +64,15 @@ The thank-you redirect (`_next`) is an absolute URL built from `siteUrl`. If `si
 
 ## Features included
 
-1. **Quick exit** — always visible. One click (or the Escape key three times within two seconds) immediately clears the page and goes to a neutral site (`weather.com` by default, set in the config). Built for clients who may not be in a safe place to be seen on a therapy site.
-2. **Guided breathing** — “Take a breath with me.” An animated circle on a 4–4–6 rhythm (in for four, hold for four, out for six). Respects reduced motion.
-3. **What to expect in your first session** — a clear, step-by-step timeline.
-4. **“Is this a good fit?”** — a short reflective checklist that leads gently to the request form. It is clearly labelled as *not* a diagnostic or clinical tool.
-5. **Crisis resources** — a calm note in the footer, with the wording set in the config (default: 988 in the US, or a local emergency number). The form also has a clear “not for emergencies” notice.
-6. **Comfort controls** — a small, persistent toggle for larger text and reduced motion. The choice is remembered in the browser.
-7. **Telehealth and location badges** on the home page.
-8. **Fees and insurance, in plain words** — including a simple explanation of private-pay and superbills.
-9. **A downloadable free resource** — a short “Preparing for your first session” PDF, easy to replace.
-10. **Privacy-minded by default** — fonts are self-hosted (no request to Google Fonts), and there is no analytics or tracking unless you add it.
+1. **Guided breathing** — “Take a breath with me.” An animated circle on a 4–4–6 rhythm (in for four, hold for four, out for six). Respects reduced motion.
+2. **What to expect in your first session** — a clear, step-by-step timeline.
+3. **“Is this a good fit?”** — a short reflective checklist that leads gently to the request form. It is clearly labelled as *not* a diagnostic or clinical tool.
+4. **Crisis resources** — a calm note in the footer, with the wording set in the config (default: 988 in the US, or a local emergency number). The form also has a clear “not for emergencies” notice.
+5. **Comfort controls** — a small, persistent toggle for larger text and reduced motion. The choice is remembered in the browser.
+6. **Telehealth and location badges** on the home page.
+7. **Fees and insurance, in plain words** — including a simple explanation of private-pay and superbills.
+8. **A downloadable free resource** — a short “Preparing for your first session” PDF, easy to replace.
+9. **Privacy-minded by default** — fonts are self-hosted (no request to Google Fonts), and there is no analytics or tracking unless you add it.
 
 The site is mobile-first and responsive, with WCAG AA contrast, keyboard navigation, visible focus states, alt text, a skip link, and `prefers-reduced-motion` support. Basic SEO is in place: meta tags, Open Graph, JSON-LD for the practice, a sitemap and `robots.txt`.
 

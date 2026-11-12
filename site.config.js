@@ -324,14 +324,6 @@ window.SITE = {
   emergencyFormNote:
     "This form is not for emergencies. If you are in crisis, call or text 988 (US) or your local emergency number, or go to your nearest emergency department.",
 
-  /* ── Quick exit ───────────────────────────────────────────────────── */
-  quickExit: {
-    enabled: true,
-    url: "https://www.weather.com",
-    label: "Quick exit",
-    hint: "Leaves this site immediately. Press Esc three times to do the same."
-  },
-
   /* ── Downloadable resource ────────────────────────────────────────── */
   resource: {
     enabled: true,
@@ -346,8 +338,6 @@ window.SITE = {
   testimonials: {
     show: true,
     heading: "Kind words",
-    ethicsNote:
-      "Therapist ethics require informed consent and careful judgment before sharing any client’s words. The lines below are clearly marked placeholders. Replace them only with real, consented testimonials, or set testimonials.show to false to hide this section.",
     items: [
       { quote: "Client words will go here.", attribution: "Placeholder — not a real client" },
       { quote: "Client words will go here.", attribution: "Placeholder — not a real client" }

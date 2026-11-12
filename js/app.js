@@ -1,7 +1,7 @@
 /**
  * Therapist site template — Averryl Studio
  * Reads window.SITE from site.config.js and hydrates the page.
- * Also wires unique features: quick exit, breathing, fit checklist,
+ * Also wires unique features: breathing, fit checklist,
  * comfort controls, form (FormSubmit), FAQ, mobile nav.
  */
 (function () {
@@ -223,54 +223,6 @@
       "</div>";
     // re-attach brand inner because outerHTML lost the image child correctly? It's fine, outerHTML includes it.
     // Actually we used brand.outerHTML after appending children, so it's OK.
-  }
-
-  /* ---------- Quick exit ---------- */
-  function setupQuickExit() {
-    var qe = SITE.quickExit || {};
-    if (qe.enabled === false) {
-      var existing = $("#quick-exit");
-      if (existing) existing.remove();
-      return;
-    }
-    var url = qe.url || "https://www.weather.com";
-    var btn = $("#quick-exit");
-    if (!btn) {
-      btn = el("a", {
-        id: "quick-exit",
-        class: "quick-exit",
-        href: url,
-        rel: "noopener noreferrer"
-      });
-      document.body.appendChild(btn);
-    }
-    btn.href = url;
-    btn.className = "quick-exit";
-    btn.setAttribute("title", qe.hint || "Leave this site immediately");
-    btn.setAttribute("aria-label", (qe.label || "Quick exit") + ". " + (qe.hint || "Leaves this site immediately. Press Escape three times to do the same."));
-    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M21 3l-9 9M10 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3" stroke-linecap="round" stroke-linejoin="round"/></svg> ' +
-      esc(qe.label || "Quick exit");
-
-    function exitNow(e) {
-      if (e) e.preventDefault();
-      try { document.documentElement.innerHTML = ""; } catch (err) { /* ignore */ }
-      window.location.replace(url);
-    }
-    btn.addEventListener("click", exitNow);
-    // Keyboard: Esc three times within 2 seconds
-    var presses = [];
-    document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape") return;
-      var now = Date.now();
-      presses = presses.filter(function (t) { return now - t < 2000; });
-      presses.push(now);
-      if (presses.length >= 3) {
-        presses = [];
-        exitNow();
-      }
-    });
-    // Expose for tests
-    window.__quickExit = exitNow;
   }
 
   /* ---------- Comfort controls ---------- */
@@ -557,8 +509,6 @@
           "<footer>— " + esc(item.attribution || "Placeholder") + "</footer></blockquote>";
       }).join("");
     }
-    var ethics = $("#ethics-note", section);
-    if (ethics && t.ethicsNote) ethics.textContent = t.ethicsNote;
     var heading = $("[data-bind='testimonials.heading']", section);
     if (heading && t.heading) heading.textContent = t.heading;
   }
@@ -754,7 +704,6 @@
   /* ---------- boot ---------- */
   function boot() {
     applyTheme();
-    setupQuickExit();
     setupComfort();
     renderHeader();
     renderFooter();

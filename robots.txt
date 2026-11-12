@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://averrylstudio.github.io/therapist-site-template/sitemap.xml
